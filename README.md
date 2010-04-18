@@ -1,44 +1,50 @@
-# RDF.rb storage adapter skeleton
+# RedStore storage adapter for RDF.rb
 
-This is a skeleton repository to create your own RDF.rb storage adapter.  It's
-designed to get you up and running with a new backend as quickly as possible,
-so that you can have working tests right away, allowing you to develop
-iteratively.
+This gem allows you to use a [RedStore](http://code.google.com/p/redstore/)
+instance as a backend for RDF.rb.
 
-See <http://blog.datagraph.org/2010/04/rdf-repository-howto> for an overview.
+Synopsis:
 
-# Getting started:
+    require 'rdf'
+    require 'rdf/redstore'
 
- 1. Ensure you have the requirements below.
- 1. Run the tests.  You'll get a lot of `NotImplementedErrors`
- 1. Find and fix the TODO markers in `lib/rdf/myrepository.rb`.   
- 1. Find and fix the TODO markers in `spec/my_repository.spec`.  You may not need to do this if your repository needs no arguments to `new()`.
- 1. Run the tests!  Man, you're awesome!
- 1. Iterate and improve!  If your backend is better served by replacing some of the many methods that an `RDF::Repository` implments, replace them.
+    repo = RDF::RedStore::Repository.new('http://localhost:8080/')
+    puts RDF::Writer.for(:ntriples).dump repo
 
-To run tests, run:
+    repo.load 'http://datagraph.org/jhacker/foaf.nt'
+    repo.count
+    # => 10
+    # Note: not all of the RedStore storage backends support the count method
 
-    spec -cfn spec/my_repository.spec
+    subject = repo.first.subject
+    subject_statements = repo.query(:subject => subject)
+    subject_statements.size
+    # => 7
 
-## Requirements
+    repo.delete(*subject_statements)
+    repo.count
+    # => 3
 
-You'll need the `rdf`, `rdf-spec`, and `rspec` libraries.  The easiest way to install these is via RubyGems.
+## Installation
 
-    $ sudo gem install rdf rdf-spec rspec
+The recommended method of installation is via RubyGems.
+
+    $ sudo gem install rdf-redstore
 
 ## Resources
 
+ * {RDF::RedStore::Repository}
  * <http://rdf.rubyforge.org> - RDF.rb's home page
- * <http://blog.datagraph.org/2010/04/rdf-repository-howto> - A blog post how-to on RDF.rb repositories
- * <http://rdf.rubyforge.org/RDF/Repository.html> - RDF.rb's Repository documentation; check here for methods you can replace.
-
+ * <http://rdf.rubyforge.org/RDF/Repository.html> - RDF.rb's Repository documentation
+ * <http://code.google.com/p/redstore/>
+ * <http://github.com/njh/rdf-redstore/>
 
 ### Support
 
 Please post questions or feedback to the [W3C-ruby-rdf mailing list][].
 
 ### Author
- * Ben Lavender | <blavender@gmail.com> | <http://github.com/bhuga> | <http://bhuga.net> | <http://blog.datagraph.org>
+ * Nicholas J Humfrey | <njh@aelius.com>
 
 ### 'License'
 
