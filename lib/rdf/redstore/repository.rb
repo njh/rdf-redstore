@@ -31,8 +31,8 @@ module RDF::RedStore
     # @private
     def count
       url = RDF::URI.parse(@url+'description')
-      description = RDF::Repository.load(url, :format => :ntriples)
-      result = description.query(:predicate => SD.totalTripless)
+      description = RDF::Graph.load(url, :format => :ntriples)
+      result = description.query(:predicate => SD.totalTriples)
       unless result.empty?
         result.first.object.value.to_i
       end
