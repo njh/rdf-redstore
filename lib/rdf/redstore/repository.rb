@@ -5,10 +5,10 @@ require 'enumerator'
 
 module RDF::RedStore
 
-  class RepositoryError < StandardError ; end
+  SD = RDF::Vocabulary.new("http://www.w3.org/ns/sparql-service-description#")
 
   ##
-  # An RDF::Repository backed for RedStore.
+  # An RDF::Repository backend for RedStore.
   #
   # @see http://rdf.rubyforge.org/RDF/Repository.html
   class Repository < ::SPARQL::Client::Repository
@@ -25,12 +25,17 @@ module RDF::RedStore
     def initialize(url, options = {})
       @url      = url
       @settings = options.dup
-      super(@url+'sparql', @settings)
+      super(@url+'query', @settings)
     end
 
     # @private
     def count
-      raise NotImplementedError
+      url = RDF::URI.parse(@url+'description')
+      description = RDF::Repository.load(url, :format => :ntriples)
+      result = description.query(:predicate => SD.totalTripless)
+      unless result.empty?
+        result.first.object.value.to_i
+      end
     end
     alias_method :size, :count
     alias_method :length, :count
