@@ -91,7 +91,6 @@ module RDF::RedStore
     
     # @private
     def post_statements(action, statements, opts = {})
-      return true if statements.empty?
       graph = RDF::Graph.new
       graph.insert_statements(statements)
       content = RDF::Writer.for(:ntriples).dump(graph)
