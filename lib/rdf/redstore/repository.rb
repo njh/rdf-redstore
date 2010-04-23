@@ -55,7 +55,6 @@ module RDF::RedStore
 
     # @private
     def insert_statements(statements, opts = {})
-      p "insert_statements(statements, #{opts})"
       post_statements(:insert, statements, opts)
     end
 
