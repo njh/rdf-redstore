@@ -27,7 +27,7 @@ module RDF
   #   require 'rdf/redstore'
   #
   # @see http://rdf.rubyforge.org/
-  # @see http://code.google.com/p/redstore/
+  # @see http://www.aelius.com/njh/redstore/
   #
   # @author [Nicholas J Humfrey](http://www.aelius.com/njh/)
   module RedStore

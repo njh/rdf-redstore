@@ -1,6 +1,6 @@
 # RedStore storage adapter for RDF.rb
 
-This gem allows you to use a [RedStore](http://code.google.com/p/redstore/)
+This gem allows you to use a [RedStore](http://www.aelius.com/njh/redstore/)
 instance as a backend for RDF.rb.
 
 Synopsis:
@@ -36,7 +36,7 @@ The recommended method of installation is via RubyGems.
  * {RDF::RedStore::Repository}
  * <http://rdf.rubyforge.org> - RDF.rb's home page
  * <http://rdf.rubyforge.org/RDF/Repository.html> - RDF.rb's Repository documentation
- * <http://code.google.com/p/redstore/>
+ * <http://www.aelius.com/njh/redstore/>
  * <http://github.com/njh/rdf-redstore/>
 
 ### Support
