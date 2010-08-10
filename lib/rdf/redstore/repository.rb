@@ -36,7 +36,7 @@ module RDF::RedStore
 
     # @private
     def count
-      uri = uri_for(:description)
+      uri = uri_for('description?format=ntriples')
       description = RDF::Graph.load(uri, :format => :ntriples)
       total = description.first_value(:predicate => SD.totalTriples)
       if total.nil? or total.to_i < 0
