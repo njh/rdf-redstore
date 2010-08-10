@@ -3,6 +3,7 @@ $:.unshift File.dirname(__FILE__) + "/../lib/"
 require 'rubygems'
 require 'rdf'
 require 'spec'
+require 'rdf/spec'
 
 def start_redstore(cmd='redstore')
   # Check that redstore is available
